@@ -3,6 +3,8 @@
     "Helvetica Neue", sans-serif;
   --main-color: #5ab2ff;
   --second-color: #a0deff;
+  --bg-color-trans: #a0deffcc;
+  --dark-bg-color-trans: #242424cc;
   --thirth-color: #caf4ff;
   --card-color: #bcdce7;
   --highlight-color: #fff9d0;
@@ -17,7 +19,6 @@
 body {
   font-family: var(--main-font);
   margin: 0;
-  padding-top: 1rem;
   font-size: 16px;
   color-scheme: light dark;
   color: var(--color);
@@ -64,6 +65,12 @@ button:focus-visible {
 .container {
   width: 100%;
 }
+section {
+  margin: 0.5rem 0.75rem 2.5rem;
+}
+section h3 {
+  color: var(--main-color);
+}
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -71,10 +78,8 @@ button:focus-visible {
 }
 .card {
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100%;
-  /* height: 15rem; */
   background-color: var(--dark-card-color);
   margin: 0;
   padding: 0.25rem;
@@ -99,23 +104,137 @@ button:focus-visible {
 .card h3 {
   margin: 0.2rem 0 0.2rem;
 }
+.card-img {
+  width: 11rem;
+  margin-right: 1rem;
+}
 .card-data {
+  width: 100%;
   margin: 0.25rem;
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    color: var(--dark-font-color);
-    background-color: var(--dark-bg-color);
+.panel {
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow-x: hidden;
+  /* Overflow: Para hacer que el contenido, los link del menú que desbordan, se pueda escrolear */
+  overflow-y: auto;
+  background-color: var(--dark-bg-color-trans);
+  opacity: 0.9;
+  visibility: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  /* De arriba */
+  transform: translate(0, -100%);
+  /* De abajo */
+  transform: translate(0, 100%);
+  /* De la derecha */
+  transform: translate(100%, 0);
+  /* De la izquierda */
+  transform: translate(-100%, 0);
+  /* De la abajo a la derecha */
+  transform: translate(100%, 100%);
+}
+
+.panel.is-active {
+  transform: translate(0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.panel-btn {
+  position: fixed;
+  z-index: 999;
+  bottom: 1vh;
+  right: 1vw;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+}
+
+.menu {
+  width: inherit;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
+.menu a {
+  padding: 2rem;
+  width: inherit;
+  display: block;
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--main-color);
+  transition: all 0.3s ease;
+}
+
+.menu a:hover {
+  font-weight: bold;
+  color: var(--second-color);
+  background-color: var(--main-modal-color);
+}
+.logo-nav {
+  display: none;
+}
+
+/*  Slides */
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  max-height: 60vh;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+/* footer */
+
+footer {
+  width: 100%;
+  display: flex;
+  height: 15vh;
+  background-color: var(--dark-font-color);
+  color: var(--dark-bg-color);
+}
+.footer-left {
+  margin: 2rem;
+  text-align: right;
+}
+.footer-left img {
+  width: 150px;
+}
+.footer-right {
+  margin: 2rem;
+  text-align: left;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
   }
-  button {
-    background-color: var(--dark-buttons-bg-color);
-  }
-  button:hover {
-    border-color: var(--dark-font-color);
-  }
-  .card {
-    background-color: var(--card-color);
+  to {
+    opacity: 1;
   }
 }
 
@@ -124,8 +243,15 @@ button:focus-visible {
     padding: 1rem;
     max-width: 100vw;
   }
+  section {
+    margin: 1rem 2rem 4rem;
+  }
+  .slideshow-container {
+    max-height: 45vh;
+  }
   .cards {
-    margin: 0.75rem 0.5rem;
+    margin: 0.75rem auto;
+    max-width: 35rem;
   }
   .card img {
     width: 180px;
@@ -142,18 +268,20 @@ button:focus-visible {
   .container {
     padding: 1rem;
     margin: 0 auto;
-    width: 30rem;
+    max-width: 1150px;
   }
   .cards {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    max-width: 100%;
   }
   .card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     width: 18rem;
     height: 22rem;
     background-color: var(--dark-card-color);
@@ -161,17 +289,75 @@ button:focus-visible {
     border-radius: 0.75rem;
     margin: 0.75rem;
     padding: 1rem;
-    box-shadow: 5px 4px 3px 2px #91a7b485;
+    /* box-shadow: 5px 4px 3px 2px #91a7b485; */
   }
   .card:hover,
   .card:active {
     border-color: var(--main-color);
-    box-shadow: 5px 4px 4px 4px #91a7b485;
+    /* box-shadow: 5px 4px 4px 4px #91a7b485; */
+  }
+  .card-img {
+    margin: 0;
   }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .container {
     padding: 0;
     max-width: 1400px;
+  }
+  .panel {
+    z-index: 997;
+    position: relative;
+    background-color: var(--dark-bg-color-trans);
+    transform: translate(0, 0);
+    opacity: 0.95;
+    visibility: visible;
+    padding: 0 0 10 0rem;
+  }
+  .panel-btn {
+    display: none;
+  }
+  .menu {
+    height: fit-content;
+    flex-direction: row;
+    justify-content: start;
+    /* text-align: right; */
+  }
+  .menu a {
+    font-size: 1.3rem;
+    padding: 0.7rem;
+  }
+  .menu a:hover,
+  .menu a.active {
+    color: var(--second-color);
+    background-color: var(--main-color);
+  }
+  .logo-nav {
+    display: block;
+  }
+  .logo {
+    display: none;
+  }
+  footer {
+    max-width: 1400px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: var(--dark-font-color);
+    background-color: var(--dark-bg-color);
+  }
+  .panel {
+    background-color: var(--bg-color-trans);
+  }
+  button {
+    background-color: var(--dark-buttons-bg-color);
+  }
+  button:hover {
+    border-color: var(--dark-font-color);
+  }
+  .card {
+    background-color: var(--card-color);
   }
 }

@@ -3,7 +3,8 @@
 
 <head>
  <meta charset="UTF-8">
- <link rel="stylesheet" href="index.css">
+ <link rel="stylesheet" href="./dist-ham/hamburgers.css">
+ <link rel="stylesheet" href="./index.css">
  <link rel="icon" type="image/x-icon" href="./favicon.ico">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Tech Hot Sale</title>
@@ -12,92 +13,78 @@
 <body>
  <div class="container">
 
-  <nav>
-   <a href="#products"><button>Productos</button></a>
-   <a href="#about"><button>Acerca de Nosotros</button></a>
-   <a href="#contact"><button>contact</button></a>
-  </nav>
-  <main class="cards">
-   <template>
+  <button class="panel-btn hamburger hamburger--spring" type="button">
+   <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+   </span>
+  </button>
+  <aside class="panel">
+   <nav class="menu">
+    <img class="logo-nav" src="./assets/logo.png" alt="logo">
+    <a href="#about"><button>Acerca de Nosotros</button></a>
+    <a href="#products"><button>Productos</button></a>
+    <a href="#"><button>Login</button></a>
+   </nav>
+  </aside>
+  <main>
+   <img class="logo" src="./assets/logo.png" alt="logo">
+   <section id="about">
+    <h3>Nosotros...</h3>
+    <h2>Disfrutá de la seguridad de comprar en la tienda más rápida</h2>
 
-   </template>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
+    <div class="slideshow-container">
+     <div class="slide fade">
+      <img src="./assets/slide1.jpg" style="width:100%">
+     </div>
+     <div class="slide fade">
+      <img src="./assets/slide2.jpg" style="width:100%">
+     </div>
+     <div class="slide fade">
+      <img src="./assets/slide3.jpg" style="width:100%">
+     </div>
     </div>
-   </figure>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
-    </div>
-   </figure>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
-    </div>
-   </figure>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
-    </div>
-   </figure>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
-    </div>
-   </figure>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
-    </div>
-   </figure>
-   <figure class="card">
-    <img src="https://picsum.photos/200/200" alt="image">
-    <div class="card-data">
-     <figcaption>algo descrip</figcaption>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis reiciendis enim ratione dolores veritatis
-      reprehenderit ut totam laboriosam repellendus. Natus doloremque vero eius fugit cumque! Facere ipsa eum possimus
-      repellendus.</p>
-     <h3>$400</h3>
-    </div>
-   </figure>
 
+    <p>
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, aspernatur. Vitae, velit aspernatur ex pariatur
+     dolor debitis fuga quas accusantium asperiores quisquam incidunt quaerat minima voluptatibus delectus id
+     dignissimos
+     sit.
+    </p>
+   </section>
+   <section id="products">
+    <h3>Productos en ofertas especiales</h3>
+    <h2>Aprovechá los envíos sin cargo de nuestros productos</h2>
+    <div class="cards">
+     <template id="template">
+      <figure class="card">
+       <div class="card-img">
+        <img src="" alt="">
+       </div>
+       <div class="card-data">
+        <figcaption></figcaption>
+        <p></p>
+        <h3></h3>
+       </div>
+      </figure>
 
+     </template>
+    </div>
+   </section>
   </main>
-
-  <script src="./index.js"></script>
-
  </div>
+ <footer>
+  <div class="footer-left">
+   <img src="./assets/logo.png" alt="logo">
+  </div>
+  <div class="footer-right">
+   <p>Legales...</p>
+   <h3>Desarrollador por <a href="https://sergioortega.com.ar" target="_blank">Sergio Ortega Dev</a></h3>
+
+  </div>
+ </footer>
+
+ <script src="./index.js"></script>
+
 </body>
 
 </html>
