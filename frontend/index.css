@@ -1,6 +1,6 @@
 :root {
-  --main-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
+  --main-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --main-color: #5ab2ff;
   --second-color: #a0deff;
   --bg-color-trans: #a0deffcc;
@@ -64,6 +64,9 @@ button:focus-visible {
 
 .container {
   width: 100%;
+}
+main {
+  scroll-behavior: smooth;
 }
 section {
   margin: 0.5rem 0.75rem 2.5rem;
@@ -171,8 +174,12 @@ section h3 {
   text-align: center;
 }
 
+.menu button {
+  width: 22rem;
+}
+
 .menu a {
-  padding: 2rem;
+  padding: 1.5rem;
   width: inherit;
   display: block;
   font-size: 2rem;
@@ -208,6 +215,16 @@ section h3 {
   animation-name: fade;
   animation-duration: 2s;
 }
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* footer */
 
 footer {
@@ -229,14 +246,135 @@ footer {
   text-align: left;
 }
 
-@keyframes fade {
+/*  - - Dialog - -  */
+
+.dialog-login-modal {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #00000030;
+  backdrop-filter: blur(0.4rem);
+  top: 0;
+  left: 0;
+  overflow: auto;
+  border: none;
+}
+
+.login-close-btn {
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  align-self: flex-end;
+  color: var(--main-color);
+}
+
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95vw;
+  height: 95vh;
+  position: relative;
+  overflow: hidden;
+
+  animation-name: zoom;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.modal-box img {
+  max-width: 30%;
+  border-radius: 25%;
+  display: block;
+  margin: auto;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  min-width: 100px;
+  max-width: 150px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-color);
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  width: 18rem;
+  height: 26rem;
+  padding: 1rem;
+}
+.login-form:hover,
+.login-form:active {
+  border-color: var(--main-color);
+}
+.login-form h2 {
+  margin: 0.5rem 0;
+}
+.login-input[type="text"],
+.login-input[type="password"] {
+  width: 80%;
+  border: 2px solid var(--second-color);
+  border-radius: 0.5rem;
+  display: block;
+  padding: 0.75rem 0.5rem;
+  margin: 0.25rem 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.modal-box .login-button {
+  padding: 10px;
+  font-size: 15px;
+  display: block;
+  width: fit-content;
+  color: var(--bg-color);
+  background-color: var(--main-color);
+  margin: 16px 0;
+}
+.login-input[type="checkbox"] {
+  margin-right: 2px;
+  vertical-align: baseline; /*no effect for baseline*/
+}
+
+.modal-box .login-input {
+  /*   width: 95%; */
+  /*  display: block;
+  margin: 10px auto; */
+}
+
+.modal-box .login-button {
+  margin-top: 16px;
+  cursor: pointer;
+}
+.login-input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin-left: 16px;
+}
+
+.modal-box a {
+  color: #1483be;
+  font-weight: 500;
+  text-decoration: underline;
+}
+.modal-cont {
+  display: block;
+}
+
+@keyframes zoom {
   from {
-    opacity: 0.4;
+    transform: scale(0);
   }
   to {
-    opacity: 1;
+    transform: scale(1);
   }
 }
+
+/*  - - - - - - - - - - -  */
 
 @media (min-width: 576px) {
   .container {
@@ -270,6 +408,9 @@ footer {
     margin: 0 auto;
     max-width: 1150px;
   }
+  .login-form {
+    width: 35rem;
+  }
   .cards {
     display: flex;
     flex-direction: row;
@@ -280,8 +421,6 @@ footer {
   .card {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     width: 18rem;
     height: 22rem;
     background-color: var(--dark-card-color);
@@ -289,7 +428,6 @@ footer {
     border-radius: 0.75rem;
     margin: 0.75rem;
     padding: 1rem;
-    /* box-shadow: 5px 4px 3px 2px #91a7b485; */
   }
   .card:hover,
   .card:active {
@@ -304,6 +442,9 @@ footer {
   .container {
     padding: 0;
     max-width: 1400px;
+  }
+  .menu button {
+    width: fit-content;
   }
   .panel {
     z-index: 997;
@@ -325,7 +466,7 @@ footer {
   }
   .menu a {
     font-size: 1.3rem;
-    padding: 0.7rem;
+    padding: 1.7rem;
   }
   .menu a:hover,
   .menu a.active {
@@ -346,6 +487,9 @@ footer {
 @media (prefers-color-scheme: light) {
   body {
     color: var(--dark-font-color);
+    background-color: var(--dark-bg-color);
+  }
+  .dialog-login-modal {
     background-color: var(--dark-bg-color);
   }
   .panel {
