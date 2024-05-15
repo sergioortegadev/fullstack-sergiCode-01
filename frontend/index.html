@@ -21,11 +21,26 @@
   <aside class="panel">
    <nav class="menu">
     <img class="logo-nav" src="./assets/logo.png" alt="logo">
-    <a href="#about"><button>Acerca de Nosotros</button></a>
-    <a href="#products"><button>Productos</button></a>
-    <a href="#"><button>Login</button></a>
+    <a class="menu-a" href="#about"><button>Acerca de Nosotros</button></a>
+    <a class="menu-a" href="#products"><button>Productos</button></a>
+    <a class="menu-a" href="#"><button data-id="login-modal-open">Login</button></a>
    </nav>
   </aside>
+
+  <header>
+   <dialog class="dialog-login-modal">
+    <div class="modal-box">
+     <form class="login-form">
+      <span class="login-close-btn" data-id="login-modal-close">&times;</span>
+      <h2>Login</h2>
+      <input type="text" class="login-input name" placeholder="username" required>
+      <input type="password" class="login-input password" placeholder="password" required>
+      <button class="login-button">Login</button>
+     </form>
+    </div>
+   </dialog>
+  </header>
+
   <main>
    <img class="logo" src="./assets/logo.png" alt="logo">
    <section id="about">

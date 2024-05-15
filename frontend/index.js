@@ -14,7 +14,9 @@ const loadProds = async (url) => {
     if (!prods) throw { status: 500, statusText: "Error API fetch" };
 
     prods.forEach((prod) => {
-      $template.querySelector("img").src = prod.images ? prod.images[0] : "./assets/noimage.png";
+      $template.querySelector("img").src = prod.images
+        ? prod.images[0]
+        : "./assets/noimage.png";
       $template.querySelector("img").alt = prod.title;
       $template.querySelector("figcaption").textContent = prod.title;
       $template.querySelector("p").textContent = prod.description;
@@ -39,13 +41,15 @@ const hamburguerMenu = (panelBtn, panel, menuLink) => {
       document.querySelector(panelBtn).classList.toggle("is-active");
     }
 
-    if (e.target.matches(menuLink)) {
+    if (e.target.matches(menuLink) || e.target.matches(`${menuLink} *`)) {
+      console.log("apreta");
       document.querySelector(panel).classList.remove("is-active");
       document.querySelector(panelBtn).classList.remove("is-active");
     }
   });
 };
 
+/*  - - Slides - - */
 let slideIndex = 0;
 
 const showSlides = () => {
@@ -61,10 +65,20 @@ const showSlides = () => {
   setTimeout(showSlides, 3000);
 };
 
+// Login Modal
+const $loginModal = document.querySelector(".dialog-login-modal");
+
+document
+  .querySelector("[data-id='login-modal-open']")
+  .addEventListener("click", () => $loginModal.showModal());
+document
+  .querySelector("[data-id='login-modal-close']")
+  .addEventListener("click", () => $loginModal.close());
+
 document.addEventListener("DOMContentLoaded", (e) => {
   loadProds(apiUrl);
 
-  hamburguerMenu(".panel-btn", ".panel", ".menu a");
+  hamburguerMenu(".panel-btn", ".panel", ".menu-a");
 
   showSlides();
 });
